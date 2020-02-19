@@ -4,6 +4,7 @@ import io from 'socket.io-client'
 import HeaderMain from './../components/header/HeaderMain'
 import Usersbar from './../components/usersbar/Usersbar'
 import InputText from './../components/input/InputText'
+import Editor from './../components/editor/Editor'
 import Messages from './../components/messages/Messages'
 import Statusbar from './../components/statusbar/Statusbar'
 import ExitButton from './../components/exitButton/ExitButton'
@@ -76,11 +77,18 @@ function Main(props) {
             <main>
                 <HeaderMain />
                 <Messages messages={messages} name={name} />
-                <InputText 
+                {/* <InputText 
                     message={ message }
                     setMessage={setMessage}
                     sendMessage={sendMessage}
-                />
+                />  */}
+                <div className="editor-container">
+                    <Editor
+                        message={ message }
+                        setMessage={setMessage}
+                        sendMessage={sendMessage}
+                    />
+                </div>
             </main>
         </div>
     )
