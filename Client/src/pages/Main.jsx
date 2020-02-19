@@ -3,7 +3,6 @@ import io from 'socket.io-client'
 
 import HeaderMain from './../components/header/HeaderMain'
 import Usersbar from './../components/usersbar/Usersbar'
-import InputText from './../components/input/InputText'
 import Editor from './../components/editor/Editor'
 import Messages from './../components/messages/Messages'
 import Statusbar from './../components/statusbar/Statusbar'
@@ -43,15 +42,14 @@ function Main(props) {
         socket.on('roomData', ({ users }) => {
             setUsers(users)
         })
-
+        
         return () => {
             socket.emit('disconnect')
             socket.off()
         }
     }, [messages])
 
-    const sendMessage = event => {
-        event.preventDefault()
+    const sendMessage = () => {
         
         if(message) {
             socket.emit('sendMessage', message, () => setMessage(''))
