@@ -5,7 +5,7 @@ import './usersbar.sass'
 const Usersbar = ({ users }) => {
 
     const listNames = users.map( user => {
-        const name = user.name.split(' ', 2)
+        const name = user.name.split(' ', 2) || user.name
         return name.join(' ')
     })
     return (

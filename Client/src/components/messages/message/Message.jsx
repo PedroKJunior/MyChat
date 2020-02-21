@@ -8,15 +8,6 @@ const Message = ({ message: { user, text }, name }) => {
     user = user.split(' ', 2) || name
     user = user.join(' ') || name
     
-
-    const codeContains = () => {
-        if(text.indexOf('code') === 1) { 
-            console.log('aqui')
-        }
-    }
-
-    codeContains()
-
     return (
        ( user === name)
         ? (
