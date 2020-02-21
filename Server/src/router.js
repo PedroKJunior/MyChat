@@ -9,11 +9,11 @@ routes.post('/newUser', async (request, response) => {
         const { user_github } = request.body
         const apiResponse = await axios.get(`http://api.github.com/users/${user_github}`)
 
-        const {name = login, avatar_url } = apiResponse.data
-
+        const {name, login, avatar_url } = apiResponse.data
+        
         const user = {
             error: false,
-            name,
+            name: name ? name : login,
             avatar_url
         }
         return response.json(user)
