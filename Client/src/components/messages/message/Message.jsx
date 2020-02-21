@@ -2,21 +2,44 @@ import React from 'react'
 import './message.sass'
 
 const Message = ({ message: { user, text }, name }) => {
-    
-    name = name.split(' ', 1)
-    name = name.join(' ')
+    name = name.split(' ', 2) || name
+    name = name.join(' ') || name
 
-    user = user.split(' ', 1)
-    user = user.join(' ')
+    user = user.split(' ', 2) || name
+    user = user.join(' ') || name
     
+
+    const codeContains = () => {
+        if(text.indexOf('code') === 1) { 
+            console.log('aqui')
+        }
+    }
+
+    codeContains()
+
     return (
        ( user === name)
         ? (
             <div className="messageContainer justifyEnd">
                 <p className="sentText pr-10">{ name }</p>
-                <div className="messageBox backgroundOrange">
-                    <p className="messageText colorWhite">{ text }</p>
-                </div>
+                {
+                    text.indexOf('code') === 1 ? (
+                        <div className="messageBox">
+                            <p  
+                                className="messageText colorWhite" 
+                                dangerouslySetInnerHTML={{ __html: text }} 
+                            />
+                        </div>
+                    )
+                    : (
+                        <div className="messageBox backgroundOrange">
+                            <p  
+                                className="messageText colorWhite" 
+                                dangerouslySetInnerHTML={{ __html: text }} 
+                            />
+                        </div>
+                    )
+                }
             </div>
         )
         :  user === 'Admin' ?
@@ -30,9 +53,23 @@ const Message = ({ message: { user, text }, name }) => {
         )        
         : (
             <div className="messageContainer justifyStart">
-                <div className="messageBox backgroundDark">
-                    <p className="messageText colorWhite">{ text }</p>
-                </div>
+                {
+                    text.indexOf('code') === 1 ? (
+                        <div className="messageBox">
+                            <p  
+                                className="messageText colorWhite"
+                                dangerouslySetInnerHTML={{ __html: text }} 
+                            />
+                        </div>
+                    ) :(
+                        <div className="messageBox backgroundDark">
+                            <p  
+                                className="messageText colorWhite"
+                                dangerouslySetInnerHTML={{ __html: text }} 
+                            />
+                        </div> 
+                    )
+                }
                 <p className="sentText pl-10">{ user }</p>
             </div>
         )

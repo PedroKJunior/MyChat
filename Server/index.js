@@ -31,12 +31,10 @@ server.on('connection', socket => {
         callback()
     })
 
-    socket.on('sendMessage', (message, callback) => {
+    socket.on('sendMessage', (message) => {
         const user = getUser(socket.id)
         listMessages.push(message)
-
-       server.emit('message', { user: user.name, text: message })
-        callback()
+        server.emit('message', { user: user.name, text: message })
     })
 
     socket.on('disconnect', () => {

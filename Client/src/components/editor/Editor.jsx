@@ -4,7 +4,7 @@ import { MdFormatBold, MdFormatItalic, MdFormatUnderlined, MdCode, MdSend } from
 import './editor.sass'
 
 
-const Editor = ({ setMessage, sendMessage, message}) => {
+const Editor = ({ sendMessage }) => {
 
     const [codeStyle, setCodeStyle] = useState(false)
 
@@ -29,15 +29,21 @@ const Editor = ({ setMessage, sendMessage, message}) => {
 
     const handleKeyPress = event => {
         if (event.key === 'Enter') {
-            editor.current.innerText = ''
-            editor.current.blur()
-            sendMessage(message)
+            handleMessage()
             textPlaceholder.current.classList.remove('hidden')
         } else {
-            setMessage(editor.current.innerText)
             textPlaceholder.current.classList.add('hidden')
         }
-            
+    }
+
+    const placeholder = () => {
+        if(editor.current.innerText === '') textPlaceholder.current.classList.remove('hidden')
+    }
+
+    const handleMessage = () => {
+        sendMessage(editor.current.innerHTML)
+        editor.current.innerText = ''
+        editor.current.blur()
     }
             
     return (
@@ -51,6 +57,7 @@ const Editor = ({ setMessage, sendMessage, message}) => {
                     contentEditable='true'
                     src='about:blank'
                     onKeyPress={ handleKeyPress }
+                    onBlur={ placeholder }
                 >
                 </div>
                 <div className="toolbar">
@@ -60,7 +67,7 @@ const Editor = ({ setMessage, sendMessage, message}) => {
                     <div onClick={code} ><MdCode className='icons'/></div>
                 </div>
             </div>
-            <MdSend className="button" onClick={ e => sendMessage(e)}/>
+            <MdSend className="button" onClick={ handleMessage }/>
         </div>
     )
 }
