@@ -5,7 +5,7 @@ import axios from 'axios'
 import './join.sass'
 
 const api = async userGit => {
-    return await axios.post('http://192.168.15.25:4000/newUser', userGit)
+    return await axios.post('http://localhost:4000/newUser', userGit)
 }
 
 function Join(props) {

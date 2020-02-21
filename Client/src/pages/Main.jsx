@@ -18,7 +18,7 @@ function Main(props) {
     const [ message, setMessage ] = useState('')
     const [ messages, setMessages ] = useState([])
     const [ users, setUsers] = useState([])
-    const ENDPOINT = 'http://192.168.15.25:8000'
+    const ENDPOINT = 'http://localhost:8000'
 
     useEffect(() => {
         const connectSocket = (endpoint) => {
@@ -49,10 +49,9 @@ function Main(props) {
         }
     }, [messages])
 
-    const sendMessage = () => {
-        
-        if(message) {
-            socket.emit('sendMessage', message, () => setMessage(''))
+    const sendMessage = (msg) => {
+        if(msg) {
+            socket.emit('sendMessage', msg, () => {})
         }
     }
 
@@ -75,11 +74,6 @@ function Main(props) {
             <main>
                 <HeaderMain />
                 <Messages messages={messages} name={name} />
-                {/* <InputText 
-                    message={ message }
-                    setMessage={setMessage}
-                    sendMessage={sendMessage}
-                />  */}
                 <div className="editor-container">
                     <Editor
                         message={ message }
