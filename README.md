@@ -13,11 +13,6 @@ Este projeto tem como objetivo aprendizado pessoal, mesclando alguns conheciment
 1. É utilizado a API pública do [Github](https://developer.github.com/v3/).
 2. São utilizadas as fonts **_Monserrat_**, **_Roboto_** e **_Roboto Slab_** do diretório do [GoogleFonts](https://fonts.google.com/).
 3. O projeto é composto por *Client* e *Servidor*, ambos estão neste repositório.
-4. É usado o ```yarn``` como gerenciador de pacotes. Para a instalção do **yarn** use o comando abaixo no terminal:
-
-```
-npm install -g yarn
-```
 
 # Rodando o Projeto
 
